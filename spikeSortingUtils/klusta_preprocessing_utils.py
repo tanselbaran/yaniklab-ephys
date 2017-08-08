@@ -111,6 +111,7 @@ def create_shank_prb_file(probe,s,p):
     """
 
     file_dir = p['path'] + '/probe_{:g}_shank_{:g}'.format(probe,s) + '/probe_{:g}_shank_{:g}.prb'.format(probe,s)
+    os.getcwd()
     copyfile('../prb_files/' + p['probe_name'] + '.prb', file_dir)
 
 def do_klusta_for_shank(probe,s,p):
