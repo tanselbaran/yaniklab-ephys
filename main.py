@@ -12,6 +12,7 @@ import sys
 from utils.load_intan_rhd_format import *
 from utils.reading_utils import *
 from time import time
+from tqdm import tqdm
 from spikeSortingUtils.klusta_preprocessing_utils import *
 from LFPutils.read_evoked_lfp import read_evoked_lfp
 import pickle
@@ -24,7 +25,7 @@ def main(p):
         p: Dictionary of parameters that contains the parameters of recording and preferences regarding the particular mode of data analysis to be used. Usually created via the
         IPython notebook, "generate_params_dict.ipynb".
     """
-    
+
     print('start reading out and analyzing trodes')
     mycwd = os.getcwd()
 ########Read out and Analysis################
@@ -50,7 +51,7 @@ def main(p):
 #Linear
     #Iterating over probes and shanks
     elif p['probe_type'] == 'linear':
-        for probe in range(p['probes']):
+        for probe in tqdm(range(p['probes'])):
             for s in range(p['shanks']):
                 print('########################  read data from probe {:g} shank {:g} ##############################'.format(probe,s))
                 shank_file = read_linear(probe,s,p)

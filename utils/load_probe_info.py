@@ -3,7 +3,7 @@ Uploaded on GitHub on Tuesday, Aug 1st, 2017
 
 author: Tansel Baran Yasar
 
-Contains the information and the maps for the Neuronexus probes that are used in the lab. 
+Contains the information and the maps for the Neuronexus probes that are used in the lab.
 """
 
 import numpy as np
@@ -12,10 +12,10 @@ def load_probe_info(probe):
     """
     This function generates a dictionary containing the information about the probe used in the experiment.
 
-    Inputs: 
-        probe: String indicating the model of the probe. 
+    Inputs:
+        probe: String indicating the model of the probe.
 
-    Outputs: 
+    Outputs:
         probe_info: Dictionary including the information about the probe. The dictionary must include the following keys:
             'numShanks' : Number of shanks
             'type': Configuration of the electrodes (tetrode, linear, polytrode)
@@ -23,10 +23,10 @@ def load_probe_info(probe):
             'numTetrodesPerShank': Number of tetrodes on each shank (only for tetrode configuration)
             'numTrodesPerShank': Number of electrodes on each shank (only for linear configuration)
             'numTrodes': Total number of electrodes on the probe (only for linear configuration)
-            'id': For tetrode configuration, (numTetrodesPerShank) x (numShanks) x 4; for linear   configuration, (numShanks) x (numTrodesPershank) Numpy array 
-        containing how the physical mapping of the probe corresponds to the mapping of the electrodes on Intan. When generating this list, please use the following 
-        convention: Shanks are numbered from 0, starting from the left. Tetrodes or the electrodes of a linear probe are numbered from 0, starting from bottom of the 
-        shank. Electrodes in a tetrode are numbered from 0, starting from the left-most electrode and continuing counter clockwise. Please do not forget that the 
+            'id': For tetrode configuration, (numTetrodesPerShank) x (numShanks) x 4; for linear   configuration, (numShanks) x (numTrodesPershank) Numpy array
+        containing how the physical mapping of the probe corresponds to the mapping of the electrodes on Intan. When generating this list, please use the following
+        convention: Shanks are numbered from 0, starting from the left. Tetrodes or the electrodes of a linear probe are numbered from 0, starting from bottom of the
+        shank. Electrodes in a tetrode are numbered from 0, starting from the left-most electrode and continuing counter clockwise. Please do not forget that the
         channel numbers on Intan software start from 0.
     """
     probe_info = {}
@@ -51,7 +51,7 @@ def load_probe_info(probe):
 
     elif probe == 'a4x8_5mm_100_200_177':
         probe_info['numShanks'] = 4
-        probe_info['type'] = 'linear' 
+        probe_info['type'] = 'linear'
         probe_info['numTrodesPerShank'] = 8
         probe_info['numTrodes'] = 32
 
@@ -59,14 +59,14 @@ def load_probe_info(probe):
         neuronexus_to_intan = [15,5,4,14,3,6,2,7,1,8,0,9,13,12,11,10,21,20,19,18,22,24,23,17,25,16,26,28,27,30,29,31]
         id = np.zeros((probe_info['numTrodesPerShank'], probe_info['numShanks'],))
         for i in range(probe_info['numShanks']):
-            id[:,i] = [neuronexus_to_intan[0+i*8], neuronexus_to_intan[7+i*8], neuronexus_to_intan[1+i*8], neuronexus_to_intan[6+i*8], neuronexus_to_intan[2+i*8], neuronexus_to_intan[5+i*8], neuronexus_to_intan[3+i*8], neuronexus_to_intan[4+i*8]]  
-        
+            id[:,i] = [neuronexus_to_intan[0+i*8], neuronexus_to_intan[7+i*8], neuronexus_to_intan[1+i*8], neuronexus_to_intan[6+i*8], neuronexus_to_intan[2+i*8], neuronexus_to_intan[5+i*8], neuronexus_to_intan[3+i*8], neuronexus_to_intan[4+i*8]]
+
         probe_info['id'] = id
 
-#2X16 linear probe  a2x16_10mm_100_500_177
-    elif probe == 'a2x16_10mm_100_500_177':  
+        #2X16 linear probe  a2x16_10mm_100_500_177
+    elif probe == 'a2x16_10mm_100_500_177':
         probe_info['numShanks'] = 2
-        probe_info['type'] = 'linear' 
+        probe_info['type'] = 'linear'
         probe_info['numTrodesPerShank'] = 16
         probe_info['numTrodes'] = 32
 
@@ -74,8 +74,8 @@ def load_probe_info(probe):
         neuronexus_to_intan = [30,26,21,17,27,22,20,25,28,23,19,24,29,18,31,16,0,15,2,13,8,9,7,1,6,14,10,11,5,12,4,3]
         id = np.zeros((probe_info['numTrodesPerShank'], probe_info['numShanks'],))
         for i in range(probe_info['numShanks']):
-            id[:,i] = [neuronexus_to_intan[0+i*16], neuronexus_to_intan[15+i*16], neuronexus_to_intan[1+i*16], neuronexus_to_intan[14+i*16], neuronexus_to_intan[2+i*16], neuronexus_to_intan[13+i*16], neuronexus_to_intan[3+i*16], neuronexus_to_intan[12+i*16], neuronexus_to_intan[4+i*16], neuronexus_to_intan[11+i*16], neuronexus_to_intan[5+i*16], neuronexus_to_intan[10+i*16], neuronexus_to_intan[6+i*16], neuronexus_to_intan[9+i*16], neuronexus_to_intan[7+i*16], neuronexus_to_intan[8+i*16]]  
-        
+            id[:,i] = [neuronexus_to_intan[0+i*16], neuronexus_to_intan[15+i*16], neuronexus_to_intan[1+i*16], neuronexus_to_intan[14+i*16], neuronexus_to_intan[2+i*16], neuronexus_to_intan[13+i*16], neuronexus_to_intan[3+i*16], neuronexus_to_intan[12+i*16], neuronexus_to_intan[4+i*16], neuronexus_to_intan[11+i*16], neuronexus_to_intan[5+i*16], neuronexus_to_intan[10+i*16], neuronexus_to_intan[6+i*16], neuronexus_to_intan[9+i*16], neuronexus_to_intan[7+i*16], neuronexus_to_intan[8+i*16]]
+
         probe_info['id'] = id
 
     return probe_info
