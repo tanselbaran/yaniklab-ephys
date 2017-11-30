@@ -51,7 +51,7 @@ def main(p):
 #Linear
     #Iterating over probes and shanks
     elif p['probe_type'] == 'linear':
-        for probe in tqdm(range(p['probes'])):
+        for probe in range(p['probes']):
             for s in range(p['shanks']):
                 print('########################  read data from probe {:g} shank {:g} ##############################'.format(probe,s))
                 shank_file = read_linear(probe,s,p)
